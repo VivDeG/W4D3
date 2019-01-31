@@ -24,21 +24,25 @@ class User < ApplicationRecord
   end
 
   def reset_session_token!
+    debugger
     self.session_token = SecureRandom::urlsafe_base64
    # user.save!
     self.session_token
   end
 
   def password=(password)
+    debugger
     @password = password
     self.password_digest = BCrypt::Password.create(password)
   end
 
   def is_password?(password)
+    debugger
     BCrypt::Password.new(self.password_digest).is_password?(password)
   end
 
   def self.find_by_credentials(username, password)
+    debugger
     user = User.find_by(username: username)
     if user && user.is_password?(password)
       user

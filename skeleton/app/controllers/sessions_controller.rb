@@ -4,6 +4,7 @@ class SessionsController < ApplicationController
   end
   
   def create
+    debugger
     if params[:user].nil?
       render :new
     else
@@ -11,13 +12,12 @@ class SessionsController < ApplicationController
         params[:user][:username],
         params[:user][:password]
       )
-    
 
     if user.nil?
       render json: 'Credentials were wrong'
     else
       login!(user)
-      redirect_to cats_url
+     # redirect_to cats_url
     end
   end
   end
